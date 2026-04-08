@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countdown PT. BERSAMA KINGSA SEJAHTERA</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-1: #050505;
+      --bg-2: #0d0b08;
+      --gold-1: #f3c86b;
+      --gold-2: #ffdf8b;
+      --gold-3: #b8842f;
+      --text-soft: rgba(255, 255, 255, 0.72);
+      --border: rgba(255, 220, 140, 0.18);
+      --panel: rgba(255, 255, 255, 0.05);
+      --panel-2: rgba(255, 255, 255, 0.08);
+      --shadow-gold: 0 0 40px rgba(243, 200, 107, 0.16);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      color: #fff;
+      background:
+        radial-gradient(circle at top, rgba(243, 200, 107, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255, 223, 139, 0.08), transparent 28%),
+        linear-gradient(135deg, var(--bg-1) 0%, #111 35%, #17120b 65%, var(--bg-1) 100%);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .glow-top,
+    .glow-bottom {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-top {
+      width: 300px;
+      height: 300px;
+      top: -80px;
+      left: -80px;
+      background: rgba(243, 200, 107, 0.18);
+    }
+
+    .glow-bottom {
+      width: 360px;
+      height: 360px;
+      right: -100px;
+      bottom: -100px;
+      background: rgba(255, 223, 139, 0.08);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .topbar small {
+      display: block;
+      color: rgba(243, 200, 107, 0.85);
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .topbar h1 {
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    .target-badge {
+      padding: 12px 18px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(243, 200, 107, 0.08);
+      color: var(--gold-2);
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: calc(100vh - 120px);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 42px;
+      padding: 48px 0 24px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(243, 200, 107, 0.28);
+      background: rgba(243, 200, 107, 0.08);
+      color: var(--gold-2);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold-2);
+      box-shadow: 0 0 18px rgba(255, 223, 139, 0.8);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.25); opacity: 0.7; }
+    }
+
+    .headline {
+      font-size: 68px;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      max-width: 760px;
+    }
+
+    .headline .gold {
+      display: block;
+      background: linear-gradient(90deg, #fff1ba, var(--gold-1), #ffb548);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtext {
+      max-width: 700px;
+      margin-top: 24px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--text-soft);
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .time-card {
+      padding: 24px 18px;
+      text-align: center;
+      border-radius: 28px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .time-card .number {
+      font-size: 56px;
+      font-weight: 900;
+      color: #ffe8aa;
+      line-height: 1;
+      text-shadow: 0 0 18px rgba(243, 200, 107, 0.14);
+    }
+
+    .time-card .label {
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+    }
+
+    .info-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .info-box {
+      padding: 16px 18px;
+      min-width: 220px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .info-box strong {
+      display: block;
+      color: var(--gold-2);
+      margin-top: 4px;
+      font-size: 15px;
+    }
+
+    .side-panel {
+      position: relative;
+    }
+
+    .side-panel::before {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: 36px;
+      background: linear-gradient(135deg, rgba(243, 200, 107, 0.18), rgba(255,255,255,0.02));
+      filter: blur(22px);
+      z-index: 0;
+    }
+
+    .panel {
+      position: relative;
+      z-index: 1;
+      padding: 24px;
+      border-radius: 32px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .panel-inner {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    }
+
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .panel-top span {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: rgba(243, 200, 107, 0.85);
+    }
+
+    .panel-light {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold-2);
+      box-shadow: 0 0 20px rgba(255, 223, 139, 0.8);
+    }
+
+    .panel-card {
+      padding: 18px;
+      margin-bottom: 14px;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .panel-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .panel-card small {
+      display: block;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+
+    .panel-card h3 {
+      font-size: 28px;
+      line-height: 1.3;
+      color: #fff;
+    }
+
+    .panel-card p {
+      margin-top: 10px;
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .panel-card .gold-text {
+      color: var(--gold-2);
+    }
+
+    footer {
+      padding: 14px 0 26px;
+      text-align: center;
+      color: rgba(255,255,255,0.38);
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 12px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .headline {
+        font-size: 54px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 18px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .headline {
+        font-size: 40px;
+      }
+
+      .subtext {
+        font-size: 16px;
+      }
+
+      .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .time-card .number {
+        font-size: 42px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .countdown-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .headline {
+        font-size: 34px;
+      }
+
+      .time-card {
+        padding: 18px 12px;
+        border-radius: 20px;
+      }
+
+      .time-card .number {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-top"></div>
+  <div class="glow-bottom"></div>
+
+  <div class="container">
+    <header class="topbar">
+      <div>
+        <small>Official Countdown</small>
+        <h1>PT. BERSAMA KINGSA SEJAHTERA</h1>
+      </div>
+      <div class="target-badge">Target: 27 Juni 2026</div>
+    </header>
+
+    <main class="hero">
+      <section>
+        <div class="pill">
+          <span class="dot"></span>
+          Menuju momen spesial KINGSA
+        </div>
+
+        <h2 class="headline">
+          Waktu terus berjalan,
+          <span class="gold">KINGSA makin dekat.</span>
+        </h2>
+
+        <p class="subtext">
+          Countdown dalam memperingati hari grand opening <strong>PT. BERSAMA KINGSA SEJAHTERA</strong> menuju
+          tanggal <strong>27 Juni 2026</strong>.
+        </p>
+
+        <div class="countdown-grid">
+          <div class="time-card">
+            <div class="number" id="days">00</div>
+            <div class="label">Hari</div>
+          </div>
+          <div class="time-card">
+            <div class="number" id="hours">00</div>
+            <div class="label">Jam</div>
+          </div>
+          <div class="time-card">
+            <div class="number" id="minutes">00</div>
+            <div class="label">Menit</div>
+          </div>
+          <div class="time-card">
+            <div class="number" id="seconds">00</div>
+            <div class="label">Detik</div>
+          </div>
+        </div>
+
+        <div class="info-boxes">
+          <div class="info-box">
+            Tagline perusahaan
+            <strong>Hebat, Mulia, Sejahtera</strong>
+          </div>
+          <div class="info-box">
+            Nuansa visual
+            <strong>Elegan • Premium • Visioner</strong>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side-panel">
+        <div class="panel">
+          <div class="panel-inner">
+            <div class="panel-top">
+              <span>Kingsa Vision</span>
+              <div class="panel-light"></div>
+            </div>
+
+            <div class="panel-card">
+              <small>Countdown Status</small>
+              <h3 id="statusText">Persiapan sedang berlangsung</h3>
+            </div>
+
+            <div class="panel-card">
+              <small>Tanggal Target</small>
+              <h3 class="gold-text">27 Juni 2026</h3>
+              <p>Disusun untuk menampilkan citra kuat, elegan, dan profesional perusahaan.</p>
+            </div>
+
+            <div class="panel-card">
+              <small>Acara Inti</small>
+              <p>
+                Untuk memperingati grand opening PT. BERSAMA KINGSA SEJAHTERA, yang dimana acara ini akan dihadiri oleh ribuan orang yang sudah bermitra dengan kami.
+              </p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      © 2026 PT. BERSAMA KINGSA SEJAHTERA • Countdown Experience
+    </footer>
+  </div>
+
+  <script>
+    const targetDate = new Date('2026-06-27T00:00:00+07:00').getTime();
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const statusText = document.getElementById('statusText');
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        statusText.textContent = 'Momen telah tiba';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+      statusText.textContent = 'Persiapan sedang berlangsung';
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
