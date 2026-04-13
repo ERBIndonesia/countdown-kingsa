@@ -11,22 +11,24 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      overflow-x: hidden;
+    }
+
     :root {
-      --bg-main: #060606;
-      --bg-secondary: #120f09;
-      --gold-1: #f6d27a;
-      --gold-2: #ffe7a8;
-      --gold-3: #c58a2e;
-      --white-soft: rgba(255, 255, 255, 0.78);
-      --white-muted: rgba(255, 255, 255, 0.52);
-      --line: rgba(255, 225, 160, 0.16);
-      --glass: rgba(255, 255, 255, 0.06);
-      --glass-strong: rgba(255, 255, 255, 0.09);
-      --shadow-dark: 0 25px 60px rgba(0, 0, 0, 0.45);
-      --shadow-gold: 0 0 30px rgba(246, 210, 122, 0.18);
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
+      --bg-1: #050505;
+      --bg-2: #0d0b08;
+      --bg-3: #161109;
+      --gold-1: #f4c96d;
+      --gold-2: #ffe29b;
+      --gold-3: #b8842f;
+      --white-soft: rgba(255,255,255,0.78);
+      --white-muted: rgba(255,255,255,0.54);
+      --border: rgba(255, 220, 140, 0.16);
+      --glass: rgba(255,255,255,0.05);
+      --glass-2: rgba(255,255,255,0.08);
+      --shadow-dark: 0 20px 60px rgba(0,0,0,0.42);
+      --shadow-gold: 0 0 35px rgba(244, 201, 109, 0.14);
     }
 
     body {
@@ -34,180 +36,267 @@
       font-family: Arial, Helvetica, sans-serif;
       color: #fff;
       background:
-        radial-gradient(circle at 15% 20%, rgba(246, 210, 122, 0.16), transparent 25%),
-        radial-gradient(circle at 85% 80%, rgba(255, 231, 168, 0.09), transparent 28%),
-        linear-gradient(135deg, #050505 0%, #0c0c0c 30%, #16120b 65%, #050505 100%);
-      overflow-x: hidden;
+        radial-gradient(circle at top left, rgba(244, 201, 109, 0.16), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(255, 226, 155, 0.08), transparent 28%),
+        linear-gradient(135deg, var(--bg-1) 0%, #0a0a0a 30%, var(--bg-3) 70%, var(--bg-1) 100%);
       position: relative;
+      overflow-x: hidden;
     }
 
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background:
+      background-image:
         linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 42px 42px;
-      opacity: 0.28;
+      background-size: 38px 38px;
+      opacity: 0.18;
       pointer-events: none;
       z-index: 0;
     }
 
-    .orb {
+    .particles {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      bottom: -20px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffe29b 0%, #f4c96d 60%, transparent 100%);
+      opacity: 0.6;
+      animation: floatUp linear infinite;
+      box-shadow: 0 0 12px rgba(255, 226, 155, 0.55);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.7);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .glow-a,
+    .glow-b {
       position: fixed;
       border-radius: 50%;
-      filter: blur(90px);
+      filter: blur(95px);
       pointer-events: none;
       z-index: 0;
     }
 
-    .orb-one {
+    .glow-a {
       width: 260px;
       height: 260px;
-      top: -60px;
-      left: -70px;
-      background: rgba(246, 210, 122, 0.18);
+      top: -80px;
+      left: -80px;
+      background: rgba(244, 201, 109, 0.18);
     }
 
-    .orb-two {
+    .glow-b {
       width: 320px;
       height: 320px;
-      right: -90px;
+      right: -100px;
       bottom: -100px;
-      background: rgba(197, 138, 46, 0.14);
+      background: rgba(255, 226, 155, 0.08);
     }
 
-    .wrapper {
-      position: relative;
-      z-index: 1;
+    .container {
       width: 100%;
       max-width: 1280px;
       margin: 0 auto;
-      padding: 24px;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
     }
 
-    .event-bar {
+    .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      padding: 16px 20px;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 22px;
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.04);
       backdrop-filter: blur(12px);
-      border-radius: 999px;
       box-shadow: var(--shadow-dark);
-      margin-bottom: 28px;
+      margin-bottom: 26px;
+      flex-wrap: wrap;
     }
 
-    .event-bar-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .topbar-left {
       min-width: 0;
+      flex: 1 1 300px;
     }
 
-    .signal {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--gold-2);
-      box-shadow: 0 0 18px rgba(255, 231, 168, 0.85);
-      animation: blink 1.6s infinite;
-      flex-shrink: 0;
-    }
-
-    @keyframes blink {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.25); opacity: 0.6; }
-    }
-
-    .event-bar-title {
-      font-size: 13px;
-      letter-spacing: 0.22em;
+    .topbar small {
+      display: block;
+      color: rgba(255, 226, 155, 0.88);
+      font-size: 11px;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--gold-2);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      margin-bottom: 6px;
+      line-height: 1.5;
+      white-space: normal;
+      word-break: break-word;
     }
 
-    .event-bar-date {
-      font-size: 14px;
-      color: var(--white-soft);
-      white-space: nowrap;
-      padding: 10px 16px;
+    .topbar h1 {
+      font-size: 18px;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .topbar-badge {
+      flex: 0 1 auto;
+      max-width: 100%;
+      padding: 11px 16px;
       border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(246, 210, 122, 0.08);
+      border: 1px solid var(--border);
+      background: rgba(244, 201, 109, 0.08);
+      color: var(--gold-2);
+      font-size: 14px;
+      line-height: 1.4;
+      text-align: center;
+      white-space: normal;
     }
 
     .hero {
-      min-height: calc(100vh - 120px);
+      min-height: calc(100vh - 110px);
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
       gap: 30px;
       align-items: center;
     }
 
-    .hero-content {
-      padding: 12px 0;
+    .hero-left {
+      min-width: 0;
     }
 
-    .mini-label {
-      display: inline-block;
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .logo-box {
+      width: 76px;
+      height: 76px;
+      border-radius: 22px;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .logo-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .logo-fallback {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--gold-2);
+      letter-spacing: 0.08em;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       padding: 10px 16px;
       border-radius: 999px;
-      border: 1px solid rgba(246, 210, 122, 0.22);
-      background: rgba(246, 210, 122, 0.08);
+      border: 1px solid rgba(244, 201, 109, 0.25);
+      background: rgba(244, 201, 109, 0.08);
       color: var(--gold-2);
       font-size: 13px;
-      letter-spacing: 0.18em;
       text-transform: uppercase;
+      letter-spacing: 0.16em;
       margin-bottom: 22px;
+      flex-wrap: wrap;
     }
 
-    .intro {
-      font-size: clamp(18px, 2.2vw, 28px);
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--gold-2);
+      box-shadow: 0 0 16px rgba(255,226,155,0.8);
+      animation: pulse 1.5s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.25); opacity: 0.7; }
+    }
+
+    .lead {
+      font-size: clamp(18px, 2vw, 28px);
       color: var(--white-soft);
-      margin-bottom: 10px;
-      font-weight: 500;
+      margin-bottom: 8px;
+      line-height: 1.5;
     }
 
     .headline {
-      font-size: clamp(42px, 7vw, 88px);
-      line-height: 0.95;
+      font-size: clamp(38px, 7vw, 82px);
       font-weight: 900;
+      line-height: 0.97;
       letter-spacing: -0.04em;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
+      word-break: break-word;
     }
 
-    .headline .gradient {
+    .headline .gold {
       display: block;
-      background: linear-gradient(90deg, #fff6d2 0%, #ffd978 50%, #d28d32 100%);
+      background: linear-gradient(90deg, #fff4c8, var(--gold-1), #ffb84f);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
-      text-shadow: var(--shadow-gold);
     }
 
-    .headline .amp {
+    .headline .and {
       display: block;
-      font-size: 0.5em;
-      line-height: 1.1;
-      color: rgba(255,255,255,0.7);
-      letter-spacing: 0.18em;
-      margin: 10px 0;
+      font-size: 0.42em;
+      line-height: 1.15;
+      letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.6);
+      margin: 10px 0 8px;
     }
 
     .venue {
-      font-size: clamp(16px, 2vw, 22px);
-      line-height: 1.7;
-      color: var(--white-soft);
       max-width: 760px;
+      font-size: clamp(16px, 2vw, 21px);
+      line-height: 1.8;
+      color: var(--white-soft);
       margin-bottom: 28px;
     }
 
@@ -215,27 +304,27 @@
       color: var(--gold-2);
     }
 
-    .countdown-wrap {
+    .countdown-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(120px, 1fr));
-      gap: 16px;
-      margin-bottom: 28px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 26px;
     }
 
-    .count-box {
+    .flip-card {
       position: relative;
-      overflow: hidden;
-      border-radius: 26px;
-      padding: 24px 16px;
-      text-align: center;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
-      border: 1px solid var(--line);
+      padding: 18px 12px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      border: 1px solid var(--border);
       backdrop-filter: blur(14px);
       box-shadow: var(--shadow-dark);
+      text-align: center;
+      overflow: hidden;
+      min-width: 0;
     }
 
-    .count-box::before {
+    .flip-card::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -243,21 +332,39 @@
       pointer-events: none;
     }
 
-    .count-value {
-      font-size: clamp(34px, 5vw, 64px);
-      font-weight: 900;
-      line-height: 1;
-      color: #fff2c8;
-      text-shadow: 0 0 18px rgba(246, 210, 122, 0.12);
+    .flip-number-wrap {
+      perspective: 800px;
       position: relative;
       z-index: 1;
     }
 
-    .count-label {
-      margin-top: 12px;
-      font-size: 12px;
-      letter-spacing: 0.28em;
+    .flip-number {
+      font-size: clamp(30px, 5vw, 60px);
+      font-weight: 900;
+      color: #ffefbe;
+      line-height: 1;
+      display: inline-block;
+      min-width: 2ch;
+      text-shadow: 0 0 18px rgba(244,201,109,0.14);
+      transform-origin: center;
+    }
+
+    .flip-number.flip {
+      animation: flipAnim 0.55s ease;
+    }
+
+    @keyframes flipAnim {
+      0% { transform: rotateX(0deg) scale(1); opacity: 1; }
+      40% { transform: rotateX(90deg) scale(0.92); opacity: 0.55; }
+      60% { transform: rotateX(-25deg) scale(1.04); opacity: 0.9; }
+      100% { transform: rotateX(0deg) scale(1); opacity: 1; }
+    }
+
+    .flip-label {
+      margin-top: 10px;
+      font-size: 11px;
       text-transform: uppercase;
+      letter-spacing: 0.28em;
       color: var(--white-muted);
       position: relative;
       z-index: 1;
@@ -265,245 +372,328 @@
 
     .cta-text {
       max-width: 720px;
-      font-size: clamp(16px, 2vw, 21px);
+      font-size: clamp(16px, 2vw, 20px);
       line-height: 1.8;
       color: var(--white-soft);
     }
 
     .cta-text strong {
       color: var(--gold-2);
-      font-weight: 700;
     }
 
-    .visual-panel {
-      position: relative;
+    .hero-right {
+      min-width: 0;
     }
 
-    .visual-card {
+    .panel {
       position: relative;
-      border-radius: var(--radius-xl);
-      padding: 24px;
+      padding: 22px;
+      border-radius: 30px;
       background: rgba(255,255,255,0.05);
-      border: 1px solid var(--line);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow-dark);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-gold);
       overflow: hidden;
     }
 
-    .visual-card::before {
+    .panel::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at top right, rgba(246, 210, 122, 0.18), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,0.05), transparent 55%);
+        radial-gradient(circle at top right, rgba(244,201,109,0.18), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,0.05), transparent 50%);
       pointer-events: none;
     }
 
-    .visual-inner {
+    .panel-inner {
       position: relative;
       z-index: 1;
-      border-radius: 28px;
-      padding: 24px;
+      padding: 22px;
+      border-radius: 24px;
       border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(0,0,0,0.16), rgba(255,255,255,0.03));
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
     }
 
-    .visual-top {
+    .panel-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
       margin-bottom: 22px;
     }
 
-    .visual-top .tag {
+    .panel-top span {
       font-size: 11px;
-      color: var(--gold-2);
-      letter-spacing: 0.32em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
+      color: rgba(255, 226, 155, 0.85);
+      line-height: 1.5;
+      word-break: break-word;
     }
 
-    .visual-top .shine {
-      width: 14px;
-      height: 14px;
+    .panel-light {
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: var(--gold-2);
-      box-shadow: 0 0 20px rgba(255, 231, 168, 0.8);
+      box-shadow: 0 0 18px rgba(255,226,155,0.85);
+      flex-shrink: 0;
     }
 
-    .feature-block {
-      padding: 18px;
+    .panel-card {
+      padding: 16px;
       border-radius: 20px;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
       margin-bottom: 14px;
+      min-width: 0;
     }
 
-    .feature-block:last-child {
+    .panel-card:last-child {
       margin-bottom: 0;
     }
 
-    .feature-block small {
+    .panel-card small {
       display: block;
       font-size: 11px;
-      letter-spacing: 0.24em;
       text-transform: uppercase;
+      letter-spacing: 0.22em;
       color: rgba(255,255,255,0.45);
       margin-bottom: 8px;
+      line-height: 1.5;
+      word-break: break-word;
     }
 
-    .feature-block h3 {
-      font-size: clamp(22px, 3vw, 34px);
+    .panel-card h3 {
+      font-size: clamp(24px, 3.6vw, 42px);
       line-height: 1.25;
-      color: #fff;
+      word-break: break-word;
     }
 
-    .feature-block p {
+    .panel-card p {
       margin-top: 10px;
       font-size: 14px;
       line-height: 1.8;
       color: var(--white-soft);
+      word-break: break-word;
     }
 
     .gold-text {
       color: var(--gold-2);
     }
 
-    .status-live {
+    .status-badge {
+      margin-top: 12px;
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-top: 12px;
       padding: 10px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(246, 210, 122, 0.22);
-      background: rgba(246, 210, 122, 0.08);
+      border: 1px solid rgba(244, 201, 109, 0.25);
+      background: rgba(244, 201, 109, 0.08);
       color: var(--gold-2);
       font-size: 13px;
+      max-width: 100%;
+      flex-wrap: wrap;
     }
 
-    .status-live .mini-dot {
+    .status-badge .mini-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--gold-2);
-      box-shadow: 0 0 14px rgba(255, 231, 168, 0.8);
+      box-shadow: 0 0 14px rgba(255,226,155,0.8);
+      flex-shrink: 0;
     }
 
-    .footer {
-      margin-top: 28px;
-      padding-top: 18px;
+    footer {
+      padding: 22px 0 10px;
       text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.08);
       color: rgba(255,255,255,0.4);
       font-size: 14px;
+      margin-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
 
     @media (max-width: 1100px) {
       .hero {
         grid-template-columns: 1fr;
-      }
-
-      .visual-panel {
-        order: -1;
+        gap: 24px;
       }
     }
 
     @media (max-width: 768px) {
-      .wrapper {
-        padding: 18px;
+      .container {
+        padding: 16px;
       }
 
-      .event-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        border-radius: 24px;
+      .topbar {
+        padding: 14px;
+        border-radius: 18px;
       }
 
-      .event-bar-date {
-        white-space: normal;
+      .topbar h1 {
+        font-size: 16px;
       }
 
-      .countdown-wrap {
-        grid-template-columns: repeat(2, 1fr);
+      .topbar-badge {
+        width: 100%;
+        border-radius: 16px;
       }
 
-      .count-box {
+      .logo-box {
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
+      }
+
+      .countdown-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flip-card {
+        border-radius: 20px;
+      }
+
+      .panel,
+      .panel-inner {
         border-radius: 22px;
-        padding: 20px 14px;
-      }
-
-      .visual-card,
-      .visual-inner {
-        border-radius: 24px;
       }
     }
 
     @media (max-width: 480px) {
-      .headline {
-        line-height: 1;
+      .container {
+        padding: 14px;
       }
 
-      .countdown-wrap {
-        gap: 12px;
-      }
-
-      .count-label {
-        letter-spacing: 0.18em;
+      .pill {
         font-size: 11px;
+        letter-spacing: 0.12em;
       }
 
-      .feature-block h3 {
-        font-size: 22px;
+      .headline {
+        font-size: 34px;
+      }
+
+      .lead {
+        font-size: 17px;
+      }
+
+      .venue {
+        font-size: 15px;
+      }
+
+      .countdown-grid {
+        gap: 10px;
+      }
+
+      .flip-card {
+        padding: 16px 10px;
+      }
+
+      .flip-number {
+        font-size: 34px;
+      }
+
+      .flip-label {
+        font-size: 10px;
+        letter-spacing: 0.18em;
+      }
+
+      .panel {
+        padding: 14px;
+      }
+
+      .panel-inner {
+        padding: 14px;
+      }
+
+      .panel-card {
+        padding: 14px;
+      }
+
+      .panel-card h3 {
+        font-size: 20px;
+      }
+
+      .panel-card p {
+        font-size: 13px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="orb orb-one"></div>
-  <div class="orb orb-two"></div>
+  <div class="particles" id="particles"></div>
+  <div class="glow-a"></div>
+  <div class="glow-b"></div>
 
-  <div class="wrapper">
-    <header class="event-bar">
-      <div class="event-bar-left">
-        <span class="signal"></span>
-        <div class="event-bar-title">Official Event Countdown • PT. Bersama Kingsa Sejahtera</div>
+  <div class="container">
+    <header class="topbar">
+      <div class="topbar-left">
+        <small>Official Event Countdown</small>
+        <h1>PT. BERSAMA KINGSA SEJAHTERA</h1>
       </div>
-      <div class="event-bar-date">27 Juni 2026 • Sportorium UMY</div>
+      <div class="topbar-badge">27 Juni 2026 • Sportorium UMY</div>
     </header>
 
     <main class="hero">
-      <section class="hero-content">
-        <div class="mini-label">Menuju Momen Besar KINGSA</div>
+      <section class="hero-left">
+        <div class="logo-wrap">
+          <div class="logo-box">
+            <img
+              src="logo-kingsa.png"
+              alt="Logo KINGSA"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+            />
+            <div class="logo-fallback" style="display:none;">K</div>
+          </div>
+        </div>
 
-        <p class="intro">Menghitung Hari Menuju...</p>
+        <div class="pill">
+          <span class="dot"></span>
+          Menuju Momen Spesial KINGSA
+        </div>
 
-        <h1 class="headline">
-          <span class="gradient">Grand Launching</span>
-          <span class="amp">&</span>
-          <span class="gradient">KINGSA Sukses Celebration</span>
-        </h1>
+        <p class="lead">Menghitung Hari Menuju...</p>
+
+        <h2 class="headline">
+          <span class="gold">Grand Launching</span>
+          <span class="and">&</span>
+          <span class="gold">KINGSA Sukses Celebration</span>
+        </h2>
 
         <p class="venue">
           <strong>SPORTORIUM UMY</strong> • <strong>27 JUNI 2026</strong>
         </p>
 
-        <div class="countdown-wrap">
-          <div class="count-box">
-            <div class="count-value" id="days">00</div>
-            <div class="count-label">Hari</div>
+        <div class="countdown-grid">
+          <div class="flip-card">
+            <div class="flip-number-wrap">
+              <div class="flip-number" id="days">00</div>
+            </div>
+            <div class="flip-label">Hari</div>
           </div>
-          <div class="count-box">
-            <div class="count-value" id="hours">00</div>
-            <div class="count-label">Jam</div>
+
+          <div class="flip-card">
+            <div class="flip-number-wrap">
+              <div class="flip-number" id="hours">00</div>
+            </div>
+            <div class="flip-label">Jam</div>
           </div>
-          <div class="count-box">
-            <div class="count-value" id="minutes">00</div>
-            <div class="count-label">Menit</div>
+
+          <div class="flip-card">
+            <div class="flip-number-wrap">
+              <div class="flip-number" id="minutes">00</div>
+            </div>
+            <div class="flip-label">Menit</div>
           </div>
-          <div class="count-box">
-            <div class="count-value" id="seconds">00</div>
-            <div class="count-label">Detik</div>
+
+          <div class="flip-card">
+            <div class="flip-number-wrap">
+              <div class="flip-number" id="seconds">00</div>
+            </div>
+            <div class="flip-label">Detik</div>
           </div>
         </div>
 
@@ -512,24 +702,24 @@
         </p>
       </section>
 
-      <aside class="visual-panel">
-        <div class="visual-card">
-          <div class="visual-inner">
-            <div class="visual-top">
-              <span class="tag">Celebration Panel</span>
-              <span class="shine"></span>
+      <aside class="hero-right">
+        <div class="panel">
+          <div class="panel-inner">
+            <div class="panel-top">
+              <span>Celebration Panel</span>
+              <div class="panel-light"></div>
             </div>
 
-            <div class="feature-block">
+            <div class="panel-card">
               <small>Status Countdown</small>
               <h3 id="statusText">Persiapan menuju hari istimewa</h3>
-              <div class="status-live">
+              <div class="status-badge">
                 <span class="mini-dot"></span>
                 <span>Live countdown aktif</span>
               </div>
             </div>
 
-            <div class="feature-block">
+            <div class="panel-card">
               <small>Highlight Event</small>
               <h3 class="gold-text">Grand Launching & Celebration</h3>
               <p>
@@ -538,12 +728,12 @@
               </p>
             </div>
 
-            <div class="feature-block">
+            <div class="panel-card">
               <small>Lokasi & Waktu</small>
               <p>
                 Sportorium UMY<br>
                 27 Juni 2026<br>
-                Bersiap menyambut perayaan besar bersama keluarga besar KINGSA.
+                Bersama keluarga besar KINGSA dalam satu perayaan besar.
               </p>
             </div>
           </div>
@@ -551,8 +741,8 @@
       </aside>
     </main>
 
-    <footer class="footer">
-      © 2026 PT. BERSAMA KINGSA Sejahtera • Grand Event Countdown
+    <footer>
+      © 2026 PT. BERSAMA KINGSA SEJAHTERA • Grand Event Countdown
     </footer>
   </div>
 
@@ -565,8 +755,17 @@
     const secondsEl = document.getElementById('seconds');
     const statusText = document.getElementById('statusText');
 
-    function pad(value) {
-      return String(value).padStart(2, '0');
+    function pad(num) {
+      return String(num).padStart(2, '0');
+    }
+
+    function flipUpdate(el, newValue) {
+      if (el.textContent !== newValue) {
+        el.classList.remove('flip');
+        void el.offsetWidth;
+        el.textContent = newValue;
+        el.classList.add('flip');
+      }
     }
 
     function updateCountdown() {
@@ -574,10 +773,10 @@
       const distance = targetDate - now;
 
       if (distance <= 0) {
-        daysEl.textContent = '00';
-        hoursEl.textContent = '00';
-        minutesEl.textContent = '00';
-        secondsEl.textContent = '00';
+        flipUpdate(daysEl, '00');
+        flipUpdate(hoursEl, '00');
+        flipUpdate(minutesEl, '00');
+        flipUpdate(secondsEl, '00');
         statusText.textContent = 'Acara telah dimulai';
         return;
       }
@@ -587,10 +786,10 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      daysEl.textContent = pad(days);
-      hoursEl.textContent = pad(hours);
-      minutesEl.textContent = pad(minutes);
-      secondsEl.textContent = pad(seconds);
+      flipUpdate(daysEl, pad(days));
+      flipUpdate(hoursEl, pad(hours));
+      flipUpdate(minutesEl, pad(minutes));
+      flipUpdate(secondsEl, pad(seconds));
 
       if (days > 30) {
         statusText.textContent = 'Persiapan menuju hari istimewa';
@@ -603,8 +802,39 @@
       }
     }
 
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const isMobile = window.innerWidth <= 768;
+      const totalParticles = isMobile ? 18 : 32;
+
+      particlesContainer.innerHTML = '';
+
+      for (let i = 0; i < totalParticles; i++) {
+        const particle = document.createElement('span');
+        particle.className = 'particle';
+
+        const size = Math.random() * 4 + 2;
+        const left = Math.random() * 100;
+        const duration = Math.random() * 8 + 8;
+        const delay = Math.random() * 10;
+        const opacity = Math.random() * 0.5 + 0.2;
+
+        particle.style.left = left + '%';
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.animationDuration = duration + 's';
+        particle.style.animationDelay = delay + 's';
+        particle.style.opacity = opacity;
+
+        particlesContainer.appendChild(particle);
+      }
+    }
+
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    createParticles();
+    window.addEventListener('resize', createParticles);
   </script>
 </body>
 </html>
