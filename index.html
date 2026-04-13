@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KINGSA COUNTDOWN</title>
-
+  <title>Grand Launching & KINGSA Sukses Celebration</title>
   <style>
     * {
       margin: 0;
@@ -13,156 +12,599 @@
     }
 
     :root {
-      --bg-1: #050505;
-      --bg-2: #0d0b08;
-      --gold-1: #f3c86b;
-      --gold-2: #ffdf8b;
-      --gold-3: #b8842f;
-      --text-soft: rgba(255, 255, 255, 0.72);
-      --border: rgba(255, 220, 140, 0.18);
-      --panel: rgba(255, 255, 255, 0.05);
-      --shadow-gold: 0 0 40px rgba(243, 200, 107, 0.16);
+      --bg-main: #060606;
+      --bg-secondary: #120f09;
+      --gold-1: #f6d27a;
+      --gold-2: #ffe7a8;
+      --gold-3: #c58a2e;
+      --white-soft: rgba(255, 255, 255, 0.78);
+      --white-muted: rgba(255, 255, 255, 0.52);
+      --line: rgba(255, 225, 160, 0.16);
+      --glass: rgba(255, 255, 255, 0.06);
+      --glass-strong: rgba(255, 255, 255, 0.09);
+      --shadow-dark: 0 25px 60px rgba(0, 0, 0, 0.45);
+      --shadow-gold: 0 0 30px rgba(246, 210, 122, 0.18);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
       color: #fff;
       background:
-        radial-gradient(circle at top, rgba(243, 200, 107, 0.18), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(255, 223, 139, 0.08), transparent 28%),
-        linear-gradient(135deg, var(--bg-1), #111, #17120b, var(--bg-1));
+        radial-gradient(circle at 15% 20%, rgba(246, 210, 122, 0.16), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(255, 231, 168, 0.09), transparent 28%),
+        linear-gradient(135deg, #050505 0%, #0c0c0c 30%, #16120b 65%, #050505 100%);
+      overflow-x: hidden;
+      position: relative;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 30px;
-      text-align: center;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 42px 42px;
+      opacity: 0.28;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb-one {
+      width: 260px;
+      height: 260px;
+      top: -60px;
+      left: -70px;
+      background: rgba(246, 210, 122, 0.18);
+    }
+
+    .orb-two {
+      width: 320px;
+      height: 320px;
+      right: -90px;
+      bottom: -100px;
+      background: rgba(197, 138, 46, 0.14);
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .event-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      box-shadow: var(--shadow-dark);
+      margin-bottom: 28px;
+    }
+
+    .event-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .signal {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold-2);
+      box-shadow: 0 0 18px rgba(255, 231, 168, 0.85);
+      animation: blink 1.6s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes blink {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.25); opacity: 0.6; }
+    }
+
+    .event-bar-title {
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .event-bar-date {
+      font-size: 14px;
+      color: var(--white-soft);
+      white-space: nowrap;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(246, 210, 122, 0.08);
+    }
+
+    .hero {
+      min-height: calc(100vh - 120px);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .hero-content {
+      padding: 12px 0;
+    }
+
+    .mini-label {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(246, 210, 122, 0.22);
+      background: rgba(246, 210, 122, 0.08);
+      color: var(--gold-2);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .intro {
+      font-size: clamp(18px, 2.2vw, 28px);
+      color: var(--white-soft);
+      margin-bottom: 10px;
+      font-weight: 500;
     }
 
     .headline {
-      font-size: 56px;
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: 0.95;
       font-weight: 900;
-      line-height: 1.2;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
-    .gold {
+    .headline .gradient {
       display: block;
-      background: linear-gradient(90deg, #fff1ba, var(--gold-1), #ffb548);
+      background: linear-gradient(90deg, #fff6d2 0%, #ffd978 50%, #d28d32 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      text-shadow: var(--shadow-gold);
     }
 
-    .subtext {
-      margin-top: 15px;
-      font-size: 20px;
-      color: var(--text-soft);
-      letter-spacing: 2px;
+    .headline .amp {
+      display: block;
+      font-size: 0.5em;
+      line-height: 1.1;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.18em;
+      margin: 10px 0;
     }
 
-    .countdown {
-      margin-top: 40px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+    .venue {
+      font-size: clamp(16px, 2vw, 22px);
+      line-height: 1.7;
+      color: var(--white-soft);
+      max-width: 760px;
+      margin-bottom: 28px;
     }
 
-    .box {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 20px;
-      border-radius: 20px;
-      min-width: 120px;
-    }
-
-    .number {
-      font-size: 48px;
-      font-weight: bold;
+    .venue strong {
       color: var(--gold-2);
     }
 
-    .label {
+    .countdown-wrap {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .count-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      padding: 24px 16px;
+      text-align: center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      border: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-dark);
+    }
+
+    .count-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent);
+      pointer-events: none;
+    }
+
+    .count-value {
+      font-size: clamp(34px, 5vw, 64px);
+      font-weight: 900;
+      line-height: 1;
+      color: #fff2c8;
+      text-shadow: 0 0 18px rgba(246, 210, 122, 0.12);
+      position: relative;
+      z-index: 1;
+    }
+
+    .count-label {
+      margin-top: 12px;
       font-size: 12px;
-      letter-spacing: 2px;
-      margin-top: 5px;
-      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--white-muted);
+      position: relative;
+      z-index: 1;
     }
 
-    .cta {
-      margin-top: 40px;
-      font-size: 20px;
+    .cta-text {
+      max-width: 720px;
+      font-size: clamp(16px, 2vw, 21px);
+      line-height: 1.8;
+      color: var(--white-soft);
+    }
+
+    .cta-text strong {
       color: var(--gold-2);
-      font-weight: bold;
+      font-weight: 700;
     }
 
+    .visual-panel {
+      position: relative;
+    }
+
+    .visual-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-dark);
+      overflow: hidden;
+    }
+
+    .visual-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(246, 210, 122, 0.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,0.05), transparent 55%);
+      pointer-events: none;
+    }
+
+    .visual-inner {
+      position: relative;
+      z-index: 1;
+      border-radius: 28px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(0,0,0,0.16), rgba(255,255,255,0.03));
+    }
+
+    .visual-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .visual-top .tag {
+      font-size: 11px;
+      color: var(--gold-2);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+
+    .visual-top .shine {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold-2);
+      box-shadow: 0 0 20px rgba(255, 231, 168, 0.8);
+    }
+
+    .feature-block {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 14px;
+    }
+
+    .feature-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-block small {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 8px;
+    }
+
+    .feature-block h3 {
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.25;
+      color: #fff;
+    }
+
+    .feature-block p {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--white-soft);
+    }
+
+    .gold-text {
+      color: var(--gold-2);
+    }
+
+    .status-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(246, 210, 122, 0.22);
+      background: rgba(246, 210, 122, 0.08);
+      color: var(--gold-2);
+      font-size: 13px;
+    }
+
+    .status-live .mini-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold-2);
+      box-shadow: 0 0 14px rgba(255, 231, 168, 0.8);
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding-top: 18px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.4);
+      font-size: 14px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .visual-panel {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .wrapper {
+        padding: 18px;
+      }
+
+      .event-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 24px;
+      }
+
+      .event-bar-date {
+        white-space: normal;
+      }
+
+      .countdown-wrap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .count-box {
+        border-radius: 22px;
+        padding: 20px 14px;
+      }
+
+      .visual-card,
+      .visual-inner {
+        border-radius: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .headline {
+        line-height: 1;
+      }
+
+      .countdown-wrap {
+        gap: 12px;
+      }
+
+      .count-label {
+        letter-spacing: 0.18em;
+        font-size: 11px;
+      }
+
+      .feature-block h3 {
+        font-size: 22px;
+      }
+    }
   </style>
 </head>
-
 <body>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
 
-  <div class="container">
-
-    <h1 class="headline">
-      Menghitung Hari Menuju...
-      <span class="gold">Grand Launching</span>
-      <span class="gold">&</span>
-      <span class="gold">KINGSA SUKSES CELEBRATION</span>
-    </h1>
-
-    <div class="subtext">
-      SPORTORIUM UMY • 27 JUNI 2026
-    </div>
-
-    <div class="countdown">
-      <div class="box">
-        <div id="days" class="number">00</div>
-        <div class="label">HARI</div>
+  <div class="wrapper">
+    <header class="event-bar">
+      <div class="event-bar-left">
+        <span class="signal"></span>
+        <div class="event-bar-title">Official Event Countdown • PT. Bersama Kingsa Sejahtera</div>
       </div>
-      <div class="box">
-        <div id="hours" class="number">00</div>
-        <div class="label">JAM</div>
-      </div>
-      <div class="box">
-        <div id="minutes" class="number">00</div>
-        <div class="label">MENIT</div>
-      </div>
-      <div class="box">
-        <div id="seconds" class="number">00</div>
-        <div class="label">DETIK</div>
-      </div>
-    </div>
+      <div class="event-bar-date">27 Juni 2026 • Sportorium UMY</div>
+    </header>
 
-    <div class="cta">
-      Siapkan diri anda untuk naik panggung kesuksesan.
-    </div>
+    <main class="hero">
+      <section class="hero-content">
+        <div class="mini-label">Menuju Momen Besar KINGSA</div>
 
+        <p class="intro">Menghitung Hari Menuju...</p>
+
+        <h1 class="headline">
+          <span class="gradient">Grand Launching</span>
+          <span class="amp">&</span>
+          <span class="gradient">KINGSA Sukses Celebration</span>
+        </h1>
+
+        <p class="venue">
+          <strong>SPORTORIUM UMY</strong> • <strong>27 JUNI 2026</strong>
+        </p>
+
+        <div class="countdown-wrap">
+          <div class="count-box">
+            <div class="count-value" id="days">00</div>
+            <div class="count-label">Hari</div>
+          </div>
+          <div class="count-box">
+            <div class="count-value" id="hours">00</div>
+            <div class="count-label">Jam</div>
+          </div>
+          <div class="count-box">
+            <div class="count-value" id="minutes">00</div>
+            <div class="count-label">Menit</div>
+          </div>
+          <div class="count-box">
+            <div class="count-value" id="seconds">00</div>
+            <div class="count-label">Detik</div>
+          </div>
+        </div>
+
+        <p class="cta-text">
+          <strong>Siapkan diri anda untuk naik panggung kesuksesan..</strong>
+        </p>
+      </section>
+
+      <aside class="visual-panel">
+        <div class="visual-card">
+          <div class="visual-inner">
+            <div class="visual-top">
+              <span class="tag">Celebration Panel</span>
+              <span class="shine"></span>
+            </div>
+
+            <div class="feature-block">
+              <small>Status Countdown</small>
+              <h3 id="statusText">Persiapan menuju hari istimewa</h3>
+              <div class="status-live">
+                <span class="mini-dot"></span>
+                <span>Live countdown aktif</span>
+              </div>
+            </div>
+
+            <div class="feature-block">
+              <small>Highlight Event</small>
+              <h3 class="gold-text">Grand Launching & Celebration</h3>
+              <p>
+                Sebuah momentum besar yang dirancang untuk menghadirkan semangat,
+                pencapaian, dan atmosfer kemenangan dalam satu panggung istimewa.
+              </p>
+            </div>
+
+            <div class="feature-block">
+              <small>Lokasi & Waktu</small>
+              <p>
+                Sportorium UMY<br>
+                27 Juni 2026<br>
+                Bersiap menyambut perayaan besar bersama keluarga besar KINGSA.
+              </p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      © 2026 PT. BERSAMA KINGSA Sejahtera • Grand Event Countdown
+    </footer>
   </div>
 
   <script>
-    const target = new Date("2026-06-27T00:00:00+07:00").getTime();
+    const targetDate = new Date('2026-06-27T00:00:00+07:00').getTime();
 
-    function update() {
-      const now = new Date().getTime();
-      const distance = target - now;
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const statusText = document.getElementById('statusText');
 
-      if (distance <= 0) return;
-
-      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const h = Math.floor((distance / (1000 * 60 * 60)) % 24);
-      const m = Math.floor((distance / (1000 * 60)) % 60);
-      const s = Math.floor((distance / 1000) % 60);
-
-      document.getElementById("days").innerText = d.toString().padStart(2, "0");
-      document.getElementById("hours").innerText = h.toString().padStart(2, "0");
-      document.getElementById("minutes").innerText = m.toString().padStart(2, "0");
-      document.getElementById("seconds").innerText = s.toString().padStart(2, "0");
+    function pad(value) {
+      return String(value).padStart(2, '0');
     }
 
-    setInterval(update, 1000);
-    update();
-  </script>
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
+      if (distance <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        statusText.textContent = 'Acara telah dimulai';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysEl.textContent = pad(days);
+      hoursEl.textContent = pad(hours);
+      minutesEl.textContent = pad(minutes);
+      secondsEl.textContent = pad(seconds);
+
+      if (days > 30) {
+        statusText.textContent = 'Persiapan menuju hari istimewa';
+      } else if (days > 7) {
+        statusText.textContent = 'Momentum semakin dekat';
+      } else if (days > 0) {
+        statusText.textContent = 'Hitung mundur pekan terakhir';
+      } else {
+        statusText.textContent = 'Hari istimewa sudah di depan mata';
+      }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
