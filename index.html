@@ -1,556 +1,275 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grand Launching KINGSA</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KINGSA Countdown</title>
 
-    html, body {
-      overflow-x: hidden;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    :root {
-      --bg-1: #050505;
-      --bg-2: #0d0b08;
-      --gold-1: #f4c96d;
-      --gold-2: #ffe3a1;
-      --gold-3: #b8842f;
-      --text-soft: rgba(255,255,255,0.78);
-      --text-muted: rgba(255,255,255,0.55);
-      --border: rgba(255, 220, 140, 0.16);
-      --glass: rgba(255,255,255,0.05);
-      --shadow-dark: 0 20px 60px rgba(0,0,0,0.42);
-      --shadow-gold: 0 0 40px rgba(244, 201, 109, 0.14);
-    }
+:root{
+  --gold:#f4c96d;
+  --gold2:#ffe3a1;
+}
 
-    body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #fff;
-      background:
-        radial-gradient(circle at top left, rgba(244, 201, 109, 0.14), transparent 24%),
-        radial-gradient(circle at bottom right, rgba(255, 226, 155, 0.08), transparent 28%),
-        linear-gradient(135deg, var(--bg-1) 0%, #0a0a0a 35%, #151008 70%, var(--bg-1) 100%);
-      position: relative;
-      overflow: hidden;
-    }
+body{
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: 0.2;
-      pointer-events: none;
-      z-index: 0;
-    }
+  background:
+    radial-gradient(circle at top left, rgba(244,201,109,0.15), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(255,226,155,0.08), transparent 30%),
+    linear-gradient(135deg,#050505,#0a0a0a,#151008);
+}
 
-    .particles {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
+/* PARTICLES */
+.particles{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
 
-    .particle {
-      position: absolute;
-      bottom: -20px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #ffe3a1 0%, #f4c96d 60%, transparent 100%);
-      box-shadow: 0 0 10px rgba(255, 227, 161, 0.45);
-      animation: floatUp linear infinite;
-    }
+.particle{
+  position:absolute;
+  bottom:-20px;
+  border-radius:50%;
+  background:radial-gradient(circle,#ffe3a1,#f4c96d,transparent);
+  animation:floatUp linear infinite;
+}
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(0.8);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.7;
-      }
-      100% {
-        transform: translateY(-110vh) scale(1.15);
-        opacity: 0;
-      }
-    }
+@keyframes floatUp{
+  0%{transform:translateY(0);opacity:0}
+  10%{opacity:.7}
+  100%{transform:translateY(-110vh);opacity:0}
+}
 
-    .glow-a,
-    .glow-b {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(100px);
-      pointer-events: none;
-      z-index: 0;
-    }
+/* WRAP */
+.wrap{
+  max-width:1000px;
+  width:100%;
+  padding:30px 20px;
+}
 
-    .glow-a {
-      width: 260px;
-      height: 260px;
-      top: -80px;
-      left: -80px;
-      background: rgba(244, 201, 109, 0.14);
-    }
+/* PILL */
+.pill{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  padding:10px 18px;
+  border-radius:999px;
+  border:1px solid rgba(244,201,109,.3);
+  background:rgba(244,201,109,.08);
+  color:var(--gold2);
+  font-size:12px;
+  letter-spacing:.15em;
+  margin-bottom:25px;
+}
 
-    .glow-b {
-      width: 320px;
-      height: 320px;
-      right: -100px;
-      bottom: -100px;
-      background: rgba(255, 226, 155, 0.08);
-    }
+.dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold2);
+  box-shadow:0 0 10px #ffe3a1;
+}
 
-    .wrap {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 1200px;
-      min-height: 100vh;
-      margin: 0 auto;
-      padding: 24px;
-      display: flex;
-      align-items: center;
-    }
+/* TEXT */
+.lead{
+  font-size:clamp(18px,2vw,28px);
+  color:#ccc;
+  margin-bottom:10px;
+}
 
-    .hero {
-      width: 100%;
-      max-width: 920px;
-    }
+.headline{
+  font-size:clamp(48px,8vw,110px);
+  font-weight:900;
+  line-height:.9;
+  text-transform:uppercase;
+}
 
-    .logo-box {
-      width: 74px;
-      height: 74px;
-      border-radius: 22px;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow-gold);
-      margin-bottom: 18px;
-    }
+.gold{
+  display:block;
+  background:linear-gradient(90deg,#fff5cb,#ffd974,#d8922f);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    .logo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
+.and{
+  font-size:.6em;
+  color:var(--gold2);
+  margin:15px 0;
+}
 
-    .logo-fallback {
-      font-size: 26px;
-      font-weight: 900;
-      color: var(--gold-2);
-      letter-spacing: 0.08em;
-      display: none;
-    }
+.meta{
+  margin:20px 0 30px;
+  color:var(--gold2);
+  font-weight:700;
+  letter-spacing:.05em;
+}
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(244, 201, 109, 0.25);
-      background: rgba(244, 201, 109, 0.08);
-      color: var(--gold-2);
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
-    }
+/* LOGO CENTER */
+.logo-center{
+  display:flex;
+  justify-content:center;
+  margin-bottom:25px;
+}
 
-    .pill-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--gold-2);
-      box-shadow: 0 0 16px rgba(255, 227, 161, 0.8);
-      animation: pulse 1.5s infinite;
-      flex-shrink: 0;
-    }
+.logo-center img{
+  width:90px;
+  height:90px;
+  padding:12px;
+  border-radius:20px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+}
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.25); opacity: 0.7; }
-    }
+/* COUNTDOWN */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:25px;
+}
 
-    .lead {
-      font-size: clamp(20px, 2vw, 30px);
-      color: var(--text-soft);
-      margin-bottom: 14px;
-      line-height: 1.45;
-    }
+.card{
+  padding:18px 10px;
+  border-radius:20px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+}
 
-    .headline {
-      font-size: clamp(52px, 9vw, 110px);
-      font-weight: 900;
-      line-height: 0.92;
-      letter-spacing: -0.05em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      word-break: break-word;
-    }
+.num{
+  font-size:clamp(30px,5vw,60px);
+  font-weight:900;
+  color:#fff0c1;
+}
 
-    .headline .gold {
-      display: block;
-      background: linear-gradient(90deg, #fff5cb 0%, #ffd974 45%, #d8922f 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 18px rgba(244, 201, 109, 0.1);
-    }
+.num.flip{
+  animation:flip .5s;
+}
 
-    .headline .and {
-      display: block;
-      font-size: 0.36em;
-      line-height: 1.1;
-      color: rgba(255,255,255,0.72);
-      letter-spacing: 0.08em;
-      margin: 12px 0;
-    }
+@keyframes flip{
+  0%{transform:rotateX(0)}
+  50%{transform:rotateX(90deg)}
+  100%{transform:rotateX(0)}
+}
 
-    .event-meta {
-      font-size: clamp(18px, 2.2vw, 30px);
-      font-weight: 800;
-      line-height: 1.6;
-      color: var(--gold-2);
-      margin-bottom: 28px;
-      text-transform: uppercase;
-    }
+.label{
+  font-size:10px;
+  letter-spacing:.2em;
+  color:#aaa;
+  margin-top:8px;
+}
 
-    .countdown-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      max-width: 760px;
-      margin-bottom: 24px;
-    }
+/* CTA */
+.cta{
+  font-size:clamp(22px,3vw,40px);
+  font-weight:800;
+  color:var(--gold2);
+}
 
-    .time-card {
-      padding: 20px 14px 16px;
-      border-radius: 24px;
-      text-align: center;
-      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-dark);
-      backdrop-filter: blur(12px);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .time-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent);
-      pointer-events: none;
-    }
-
-    .flip-number {
-      position: relative;
-      z-index: 1;
-      font-size: clamp(34px, 5vw, 64px);
-      font-weight: 900;
-      line-height: 1;
-      color: #fff0c1;
-      display: inline-block;
-      min-width: 2ch;
-      text-shadow: 0 0 18px rgba(244, 201, 109, 0.12);
-      transform-origin: center;
-    }
-
-    .flip-number.flip {
-      animation: flipAnim 0.55s ease;
-    }
-
-    @keyframes flipAnim {
-      0% {
-        transform: rotateX(0deg) scale(1);
-        opacity: 1;
-      }
-      40% {
-        transform: rotateX(90deg) scale(0.92);
-        opacity: 0.55;
-      }
-      60% {
-        transform: rotateX(-20deg) scale(1.03);
-        opacity: 0.9;
-      }
-      100% {
-        transform: rotateX(0deg) scale(1);
-        opacity: 1;
-      }
-    }
-
-    .label {
-      position: relative;
-      z-index: 1;
-      margin-top: 10px;
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      font-weight: 700;
-    }
-
-    .cta {
-      font-size: clamp(24px, 2.8vw, 40px);
-      line-height: 1.45;
-      font-weight: 800;
-      color: var(--gold-2);
-      max-width: 900px;
-      text-wrap: balance;
-    }
-
-    @media (max-width: 768px) {
-      .wrap {
-        padding: 18px;
-        align-items: flex-start;
-      }
-
-      .hero {
-        padding-top: 14px;
-      }
-
-      .countdown-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-      }
-
-      .time-card {
-        padding: 16px 10px 14px;
-        border-radius: 20px;
-      }
-
-      .label {
-        font-size: 10px;
-        letter-spacing: 0.18em;
-      }
-
-      .cta {
-        font-size: clamp(22px, 5.2vw, 30px);
-      }
-    }
-
-    @media (max-width: 520px) {
-      .logo-box {
-        width: 64px;
-        height: 64px;
-        border-radius: 18px;
-      }
-
-      .pill {
-        font-size: 11px;
-        letter-spacing: 0.1em;
-        padding: 9px 14px;
-      }
-
-      .lead {
-        font-size: 18px;
-      }
-
-      .headline {
-        font-size: 50px;
-        line-height: 0.95;
-      }
-
-      .event-meta {
-        font-size: 17px;
-        line-height: 1.5;
-      }
-
-      .countdown-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-      }
-
-      .time-card {
-        padding: 14px 8px 12px;
-        border-radius: 18px;
-      }
-
-      .flip-number {
-        font-size: 30px;
-      }
-
-      .label {
-        font-size: 9px;
-        letter-spacing: 0.14em;
-      }
-
-      .cta {
-        font-size: 28px;
-        line-height: 1.35;
-      }
-    }
-
-    @media (max-width: 390px) {
-      .headline {
-        font-size: 42px;
-      }
-
-      .flip-number {
-        font-size: 26px;
-      }
-
-      .cta {
-        font-size: 24px;
-      }
-    }
-  </style>
+/* RESPONSIVE */
+@media(min-width:1024px){
+  .headline{font-size:110px}
+  .num{font-size:70px}
+  .cta{font-size:38px}
+  .logo-center img{width:110px;height:110px}
+}
+</style>
 </head>
+
 <body>
-  <div class="particles" id="particles"></div>
-  <div class="glow-a"></div>
-  <div class="glow-b"></div>
 
-  <div class="wrap">
-    <section class="hero">
-      <div class="logo-box">
-        <img
-          src="logo-kingsa.png"
-          alt="Logo KINGSA"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-        />
-        <div class="logo-fallback">K</div>
-      </div>
+<div class="particles" id="particles"></div>
 
-      <div class="pill">
-        <span class="pill-dot"></span>
-        <span>Menuju Momen Spesial KINGSA</span>
-      </div>
+<div class="wrap">
 
-      <p class="lead">Menghitung Hari Menuju...</p>
+<div class="pill">
+  <div class="dot"></div>
+  Menuju Momen Spesial KINGSA
+</div>
 
-      <h1 class="headline">
-        <span class="gold">Grand</span>
-        <span class="gold">Launching</span>
-        <span class="and">&</span>
-        <span class="gold">KINGSA</span>
-        <span class="gold">Sukses</span>
-        <span class="gold">Celebration</span>
-      </h1>
+<p class="lead">Menghitung Hari Menuju...</p>
 
-      <div class="event-meta">
-        SPORTORIUM UMY • 27 JUNI 2026
-      </div>
+<h1 class="headline">
+  <span class="gold">Grand</span>
+  <span class="gold">Launching</span>
+  <span class="and">&</span>
+  <span class="gold">Kingsa</span>
+  <span class="gold">Sukses</span>
+  <span class="gold">Celebration</span>
+</h1>
 
-      <div class="countdown-grid">
-        <div class="time-card">
-          <div class="flip-number" id="days">00</div>
-          <div class="label">Hari</div>
-        </div>
-        <div class="time-card">
-          <div class="flip-number" id="hours">00</div>
-          <div class="label">Jam</div>
-        </div>
-        <div class="time-card">
-          <div class="flip-number" id="minutes">00</div>
-          <div class="label">Menit</div>
-        </div>
-        <div class="time-card">
-          <div class="flip-number" id="seconds">00</div>
-          <div class="label">Detik</div>
-        </div>
-      </div>
+<div class="meta">
+  SPORTORIUM UMY • 27 JUNI 2026
+</div>
 
-      <p class="cta">
-        Siapkan diri anda untuk naik panggung kesuksesan..
-      </p>
-    </section>
-  </div>
+<div class="logo-center">
+  <img src="logo-kingsa.png">
+</div>
 
-  <script>
-    const targetDate = new Date('2026-06-27T00:00:00+07:00').getTime();
+<div class="grid">
+  <div class="card"><div class="num" id="d">00</div><div class="label">HARI</div></div>
+  <div class="card"><div class="num" id="h">00</div><div class="label">JAM</div></div>
+  <div class="card"><div class="num" id="m">00</div><div class="label">MENIT</div></div>
+  <div class="card"><div class="num" id="s">00</div><div class="label">DETIK</div></div>
+</div>
 
-    const daysEl = document.getElementById('days');
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
+<p class="cta">
+Siapkan diri anda untuk naik panggung kesuksesan..
+</p>
 
-    function pad(num) {
-      return String(num).padStart(2, '0');
-    }
+</div>
 
-    function flipUpdate(el, newValue) {
-      if (el.textContent !== newValue) {
-        el.classList.remove('flip');
-        void el.offsetWidth;
-        el.textContent = newValue;
-        el.classList.add('flip');
-      }
-    }
+<script>
+const target=new Date("2026-06-27T00:00:00+07:00").getTime();
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+function pad(n){return String(n).padStart(2,"0");}
 
-      if (distance <= 0) {
-        flipUpdate(daysEl, '00');
-        flipUpdate(hoursEl, '00');
-        flipUpdate(minutesEl, '00');
-        flipUpdate(secondsEl, '00');
-        return;
-      }
+function flip(el,val){
+  if(el.textContent!==val){
+    el.classList.remove("flip");
+    void el.offsetWidth;
+    el.textContent=val;
+    el.classList.add("flip");
+  }
+}
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+function run(){
+  const now=Date.now();
+  const dist=target-now;
 
-      flipUpdate(daysEl, pad(days));
-      flipUpdate(hoursEl, pad(hours));
-      flipUpdate(minutesEl, pad(minutes));
-      flipUpdate(secondsEl, pad(seconds));
-    }
+  const d=Math.floor(dist/86400000);
+  const h=Math.floor((dist%86400000)/3600000);
+  const m=Math.floor((dist%3600000)/60000);
+  const s=Math.floor((dist%60000)/1000);
 
-    function createParticles() {
-      const container = document.getElementById('particles');
-      const total = window.innerWidth <= 768 ? 16 : 28;
+  flip(document.getElementById("d"),pad(d));
+  flip(document.getElementById("h"),pad(h));
+  flip(document.getElementById("m"),pad(m));
+  flip(document.getElementById("s"),pad(s));
+}
 
-      container.innerHTML = '';
+setInterval(run,1000);
+run();
 
-      for (let i = 0; i < total; i++) {
-        const p = document.createElement('span');
-        p.className = 'particle';
+/* PARTICLES */
+const pWrap=document.getElementById("particles");
+for(let i=0;i<25;i++){
+  let p=document.createElement("span");
+  p.className="particle";
+  p.style.left=Math.random()*100+"%";
+  p.style.width=p.style.height=(Math.random()*4+2)+"px";
+  p.style.animationDuration=(Math.random()*8+8)+"s";
+  p.style.animationDelay=(Math.random()*5)+"s";
+  pWrap.appendChild(p);
+}
+</script>
 
-        const size = Math.random() * 4 + 2;
-        const left = Math.random() * 100;
-        const duration = Math.random() * 8 + 8;
-        const delay = Math.random() * 10;
-        const opacity = Math.random() * 0.45 + 0.2;
-
-        p.style.left = left + '%';
-        p.style.width = size + 'px';
-        p.style.height = size + 'px';
-        p.style.animationDuration = duration + 's';
-        p.style.animationDelay = delay + 's';
-        p.style.opacity = opacity;
-
-        container.appendChild(p);
-      }
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-    createParticles();
-    window.addEventListener('resize', createParticles);
-  </script>
 </body>
 </html>
