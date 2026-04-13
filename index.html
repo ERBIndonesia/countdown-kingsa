@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grand Launching & KINGSA Sukses Celebration</title>
+  <title>Grand Launching KINGSA</title>
   <style>
     * {
       margin: 0;
@@ -18,17 +18,15 @@
     :root {
       --bg-1: #050505;
       --bg-2: #0d0b08;
-      --bg-3: #161109;
       --gold-1: #f4c96d;
-      --gold-2: #ffe29b;
+      --gold-2: #ffe3a1;
       --gold-3: #b8842f;
-      --white-soft: rgba(255,255,255,0.78);
-      --white-muted: rgba(255,255,255,0.54);
+      --text-soft: rgba(255,255,255,0.78);
+      --text-muted: rgba(255,255,255,0.55);
       --border: rgba(255, 220, 140, 0.16);
       --glass: rgba(255,255,255,0.05);
-      --glass-2: rgba(255,255,255,0.08);
       --shadow-dark: 0 20px 60px rgba(0,0,0,0.42);
-      --shadow-gold: 0 0 35px rgba(244, 201, 109, 0.14);
+      --shadow-gold: 0 0 40px rgba(244, 201, 109, 0.14);
     }
 
     body {
@@ -36,11 +34,11 @@
       font-family: Arial, Helvetica, sans-serif;
       color: #fff;
       background:
-        radial-gradient(circle at top left, rgba(244, 201, 109, 0.16), transparent 25%),
+        radial-gradient(circle at top left, rgba(244, 201, 109, 0.14), transparent 24%),
         radial-gradient(circle at bottom right, rgba(255, 226, 155, 0.08), transparent 28%),
-        linear-gradient(135deg, var(--bg-1) 0%, #0a0a0a 30%, var(--bg-3) 70%, var(--bg-1) 100%);
+        linear-gradient(135deg, var(--bg-1) 0%, #0a0a0a 35%, #151008 70%, var(--bg-1) 100%);
       position: relative;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     body::before {
@@ -48,10 +46,10 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 38px 38px;
-      opacity: 0.18;
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.2;
       pointer-events: none;
       z-index: 0;
     }
@@ -59,33 +57,30 @@
     .particles {
       position: fixed;
       inset: 0;
-      overflow: hidden;
       pointer-events: none;
+      overflow: hidden;
       z-index: 0;
     }
 
     .particle {
       position: absolute;
       bottom: -20px;
-      width: 4px;
-      height: 4px;
       border-radius: 50%;
-      background: radial-gradient(circle, #ffe29b 0%, #f4c96d 60%, transparent 100%);
-      opacity: 0.6;
+      background: radial-gradient(circle, #ffe3a1 0%, #f4c96d 60%, transparent 100%);
+      box-shadow: 0 0 10px rgba(255, 227, 161, 0.45);
       animation: floatUp linear infinite;
-      box-shadow: 0 0 12px rgba(255, 226, 155, 0.55);
     }
 
     @keyframes floatUp {
       0% {
-        transform: translateY(0) scale(0.7);
+        transform: translateY(0) scale(0.8);
         opacity: 0;
       }
       10% {
         opacity: 0.7;
       }
       100% {
-        transform: translateY(-110vh) scale(1.2);
+        transform: translateY(-110vh) scale(1.15);
         opacity: 0;
       }
     }
@@ -94,7 +89,7 @@
     .glow-b {
       position: fixed;
       border-radius: 50%;
-      filter: blur(95px);
+      filter: blur(100px);
       pointer-events: none;
       z-index: 0;
     }
@@ -104,7 +99,7 @@
       height: 260px;
       top: -80px;
       left: -80px;
-      background: rgba(244, 201, 109, 0.18);
+      background: rgba(244, 201, 109, 0.14);
     }
 
     .glow-b {
@@ -115,115 +110,51 @@
       background: rgba(255, 226, 155, 0.08);
     }
 
-    .container {
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 20px;
+    .wrap {
       position: relative;
       z-index: 1;
-    }
-
-    .topbar {
+      width: 100%;
+      max-width: 1200px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 24px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 14px;
-      padding: 16px 18px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow-dark);
-      margin-bottom: 26px;
-      flex-wrap: wrap;
-    }
-
-    .topbar-left {
-      min-width: 0;
-      flex: 1 1 300px;
-    }
-
-    .topbar small {
-      display: block;
-      color: rgba(255, 226, 155, 0.88);
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      line-height: 1.5;
-      white-space: normal;
-      word-break: break-word;
-    }
-
-    .topbar h1 {
-      font-size: 18px;
-      line-height: 1.35;
-      word-break: break-word;
-    }
-
-    .topbar-badge {
-      flex: 0 1 auto;
-      max-width: 100%;
-      padding: 11px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(244, 201, 109, 0.08);
-      color: var(--gold-2);
-      font-size: 14px;
-      line-height: 1.4;
-      text-align: center;
-      white-space: normal;
     }
 
     .hero {
-      min-height: calc(100vh - 110px);
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 30px;
-      align-items: center;
-    }
-
-    .hero-left {
-      min-width: 0;
-    }
-
-    .logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
+      width: 100%;
+      max-width: 920px;
     }
 
     .logo-box {
-      width: 76px;
-      height: 76px;
+      width: 74px;
+      height: 74px;
       border-radius: 22px;
       padding: 10px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow-gold);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      flex-shrink: 0;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-gold);
+      margin-bottom: 18px;
     }
 
     .logo-box img {
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       display: block;
     }
 
     .logo-fallback {
-      font-size: 22px;
+      font-size: 26px;
       font-weight: 900;
       color: var(--gold-2);
       letter-spacing: 0.08em;
+      display: none;
     }
 
     .pill {
@@ -236,18 +167,19 @@
       background: rgba(244, 201, 109, 0.08);
       color: var(--gold-2);
       font-size: 13px;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       margin-bottom: 22px;
       flex-wrap: wrap;
     }
 
-    .dot {
+    .pill-dot {
       width: 9px;
       height: 9px;
       border-radius: 50%;
       background: var(--gold-2);
-      box-shadow: 0 0 16px rgba(255,226,155,0.8);
+      box-shadow: 0 0 16px rgba(255, 227, 161, 0.8);
       animation: pulse 1.5s infinite;
       flex-shrink: 0;
     }
@@ -258,73 +190,71 @@
     }
 
     .lead {
-      font-size: clamp(18px, 2vw, 28px);
-      color: var(--white-soft);
-      margin-bottom: 8px;
-      line-height: 1.5;
+      font-size: clamp(20px, 2vw, 30px);
+      color: var(--text-soft);
+      margin-bottom: 14px;
+      line-height: 1.45;
     }
 
     .headline {
-      font-size: clamp(38px, 7vw, 82px);
+      font-size: clamp(52px, 9vw, 110px);
       font-weight: 900;
-      line-height: 0.97;
-      letter-spacing: -0.04em;
+      line-height: 0.92;
+      letter-spacing: -0.05em;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 18px;
       word-break: break-word;
     }
 
     .headline .gold {
       display: block;
-      background: linear-gradient(90deg, #fff4c8, var(--gold-1), #ffb84f);
+      background: linear-gradient(90deg, #fff5cb 0%, #ffd974 45%, #d8922f 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
+      text-shadow: 0 0 18px rgba(244, 201, 109, 0.1);
     }
 
     .headline .and {
       display: block;
-      font-size: 0.42em;
-      line-height: 1.15;
-      letter-spacing: 0.22em;
-      color: rgba(255,255,255,0.6);
-      margin: 10px 0 8px;
+      font-size: 0.36em;
+      line-height: 1.1;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.08em;
+      margin: 12px 0;
     }
 
-    .venue {
-      max-width: 760px;
-      font-size: clamp(16px, 2vw, 21px);
-      line-height: 1.8;
-      color: var(--white-soft);
-      margin-bottom: 28px;
-    }
-
-    .venue strong {
+    .event-meta {
+      font-size: clamp(18px, 2.2vw, 30px);
+      font-weight: 800;
+      line-height: 1.6;
       color: var(--gold-2);
+      margin-bottom: 28px;
+      text-transform: uppercase;
     }
 
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
-      margin-bottom: 26px;
+      max-width: 760px;
+      margin-bottom: 24px;
     }
 
-    .flip-card {
-      position: relative;
-      padding: 18px 12px;
+    .time-card {
+      padding: 20px 14px 16px;
       border-radius: 24px;
+      text-align: center;
       background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
       border: 1px solid var(--border);
-      backdrop-filter: blur(14px);
       box-shadow: var(--shadow-dark);
-      text-align: center;
+      backdrop-filter: blur(12px);
       overflow: hidden;
-      min-width: 0;
+      position: relative;
     }
 
-    .flip-card::before {
+    .time-card::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -332,20 +262,16 @@
       pointer-events: none;
     }
 
-    .flip-number-wrap {
-      perspective: 800px;
+    .flip-number {
       position: relative;
       z-index: 1;
-    }
-
-    .flip-number {
-      font-size: clamp(30px, 5vw, 60px);
+      font-size: clamp(34px, 5vw, 64px);
       font-weight: 900;
-      color: #ffefbe;
       line-height: 1;
+      color: #fff0c1;
       display: inline-block;
       min-width: 2ch;
-      text-shadow: 0 0 18px rgba(244,201,109,0.14);
+      text-shadow: 0 0 18px rgba(244, 201, 109, 0.12);
       transform-origin: center;
     }
 
@@ -354,271 +280,137 @@
     }
 
     @keyframes flipAnim {
-      0% { transform: rotateX(0deg) scale(1); opacity: 1; }
-      40% { transform: rotateX(90deg) scale(0.92); opacity: 0.55; }
-      60% { transform: rotateX(-25deg) scale(1.04); opacity: 0.9; }
-      100% { transform: rotateX(0deg) scale(1); opacity: 1; }
-    }
-
-    .flip-label {
-      margin-top: 10px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.28em;
-      color: var(--white-muted);
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-text {
-      max-width: 720px;
-      font-size: clamp(16px, 2vw, 20px);
-      line-height: 1.8;
-      color: var(--white-soft);
-    }
-
-    .cta-text strong {
-      color: var(--gold-2);
-    }
-
-    .hero-right {
-      min-width: 0;
-    }
-
-    .panel {
-      position: relative;
-      padding: 22px;
-      border-radius: 30px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(16px);
-      box-shadow: var(--shadow-gold);
-      overflow: hidden;
-    }
-
-    .panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top right, rgba(244,201,109,0.18), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,0.05), transparent 50%);
-      pointer-events: none;
-    }
-
-    .panel-inner {
-      position: relative;
-      z-index: 1;
-      padding: 22px;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
-    }
-
-    .panel-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 22px;
-    }
-
-    .panel-top span {
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: rgba(255, 226, 155, 0.85);
-      line-height: 1.5;
-      word-break: break-word;
-    }
-
-    .panel-light {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--gold-2);
-      box-shadow: 0 0 18px rgba(255,226,155,0.85);
-      flex-shrink: 0;
-    }
-
-    .panel-card {
-      padding: 16px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 14px;
-      min-width: 0;
-    }
-
-    .panel-card:last-child {
-      margin-bottom: 0;
-    }
-
-    .panel-card small {
-      display: block;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 8px;
-      line-height: 1.5;
-      word-break: break-word;
-    }
-
-    .panel-card h3 {
-      font-size: clamp(24px, 3.6vw, 42px);
-      line-height: 1.25;
-      word-break: break-word;
-    }
-
-    .panel-card p {
-      margin-top: 10px;
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--white-soft);
-      word-break: break-word;
-    }
-
-    .gold-text {
-      color: var(--gold-2);
-    }
-
-    .status-badge {
-      margin-top: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(244, 201, 109, 0.25);
-      background: rgba(244, 201, 109, 0.08);
-      color: var(--gold-2);
-      font-size: 13px;
-      max-width: 100%;
-      flex-wrap: wrap;
-    }
-
-    .status-badge .mini-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gold-2);
-      box-shadow: 0 0 14px rgba(255,226,155,0.8);
-      flex-shrink: 0;
-    }
-
-    footer {
-      padding: 22px 0 10px;
-      text-align: center;
-      color: rgba(255,255,255,0.4);
-      font-size: 14px;
-      margin-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    @media (max-width: 1100px) {
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 24px;
+      0% {
+        transform: rotateX(0deg) scale(1);
+        opacity: 1;
       }
+      40% {
+        transform: rotateX(90deg) scale(0.92);
+        opacity: 0.55;
+      }
+      60% {
+        transform: rotateX(-20deg) scale(1.03);
+        opacity: 0.9;
+      }
+      100% {
+        transform: rotateX(0deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .label {
+      position: relative;
+      z-index: 1;
+      margin-top: 10px;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .cta {
+      font-size: clamp(24px, 2.8vw, 40px);
+      line-height: 1.45;
+      font-weight: 800;
+      color: var(--gold-2);
+      max-width: 900px;
+      text-wrap: balance;
     }
 
     @media (max-width: 768px) {
-      .container {
-        padding: 16px;
+      .wrap {
+        padding: 18px;
+        align-items: flex-start;
       }
 
-      .topbar {
-        padding: 14px;
-        border-radius: 18px;
+      .hero {
+        padding-top: 14px;
       }
 
-      .topbar h1 {
-        font-size: 16px;
+      .countdown-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
       }
 
-      .topbar-badge {
-        width: 100%;
-        border-radius: 16px;
+      .time-card {
+        padding: 16px 10px 14px;
+        border-radius: 20px;
       }
 
+      .label {
+        font-size: 10px;
+        letter-spacing: 0.18em;
+      }
+
+      .cta {
+        font-size: clamp(22px, 5.2vw, 30px);
+      }
+    }
+
+    @media (max-width: 520px) {
       .logo-box {
         width: 64px;
         height: 64px;
         border-radius: 18px;
       }
 
-      .countdown-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .flip-card {
-        border-radius: 20px;
-      }
-
-      .panel,
-      .panel-inner {
-        border-radius: 22px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        padding: 14px;
-      }
-
       .pill {
         font-size: 11px;
-        letter-spacing: 0.12em;
-      }
-
-      .headline {
-        font-size: 34px;
+        letter-spacing: 0.1em;
+        padding: 9px 14px;
       }
 
       .lead {
-        font-size: 17px;
+        font-size: 18px;
       }
 
-      .venue {
-        font-size: 15px;
+      .headline {
+        font-size: 50px;
+        line-height: 0.95;
+      }
+
+      .event-meta {
+        font-size: 17px;
+        line-height: 1.5;
       }
 
       .countdown-grid {
-        gap: 10px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
       }
 
-      .flip-card {
-        padding: 16px 10px;
+      .time-card {
+        padding: 14px 8px 12px;
+        border-radius: 18px;
       }
 
       .flip-number {
-        font-size: 34px;
+        font-size: 30px;
       }
 
-      .flip-label {
-        font-size: 10px;
-        letter-spacing: 0.18em;
+      .label {
+        font-size: 9px;
+        letter-spacing: 0.14em;
       }
 
-      .panel {
-        padding: 14px;
+      .cta {
+        font-size: 28px;
+        line-height: 1.35;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .headline {
+        font-size: 42px;
       }
 
-      .panel-inner {
-        padding: 14px;
+      .flip-number {
+        font-size: 26px;
       }
 
-      .panel-card {
-        padding: 14px;
-      }
-
-      .panel-card h3 {
-        font-size: 20px;
-      }
-
-      .panel-card p {
-        font-size: 13px;
+      .cta {
+        font-size: 24px;
       }
     }
   </style>
@@ -628,122 +420,60 @@
   <div class="glow-a"></div>
   <div class="glow-b"></div>
 
-  <div class="container">
-    <header class="topbar">
-      <div class="topbar-left">
-        <small>Official Event Countdown</small>
-        <h1>PT. BERSAMA KINGSA SEJAHTERA</h1>
+  <div class="wrap">
+    <section class="hero">
+      <div class="logo-box">
+        <img
+          src="logo-kingsa.png"
+          alt="Logo KINGSA"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        />
+        <div class="logo-fallback">K</div>
       </div>
-      <div class="topbar-badge">27 Juni 2026 • Sportorium UMY</div>
-    </header>
 
-    <main class="hero">
-      <section class="hero-left">
-        <div class="logo-wrap">
-          <div class="logo-box">
-            <img
-              src="logo-kingsa.png"
-              alt="Logo KINGSA"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-            />
-            <div class="logo-fallback" style="display:none;">K</div>
-          </div>
+      <div class="pill">
+        <span class="pill-dot"></span>
+        <span>Menuju Momen Spesial KINGSA</span>
+      </div>
+
+      <p class="lead">Menghitung Hari Menuju...</p>
+
+      <h1 class="headline">
+        <span class="gold">Grand</span>
+        <span class="gold">Launching</span>
+        <span class="and">&</span>
+        <span class="gold">KINGSA</span>
+        <span class="gold">Sukses</span>
+        <span class="gold">Celebration</span>
+      </h1>
+
+      <div class="event-meta">
+        SPORTORIUM UMY • 27 JUNI 2026
+      </div>
+
+      <div class="countdown-grid">
+        <div class="time-card">
+          <div class="flip-number" id="days">00</div>
+          <div class="label">Hari</div>
         </div>
-
-        <div class="pill">
-          <span class="dot"></span>
-          Menuju Momen Spesial KINGSA
+        <div class="time-card">
+          <div class="flip-number" id="hours">00</div>
+          <div class="label">Jam</div>
         </div>
-
-        <p class="lead">Menghitung Hari Menuju...</p>
-
-        <h2 class="headline">
-          <span class="gold">Grand Launching</span>
-          <span class="and">&</span>
-          <span class="gold">KINGSA Sukses Celebration</span>
-        </h2>
-
-        <p class="venue">
-          <strong>SPORTORIUM UMY</strong> • <strong>27 JUNI 2026</strong>
-        </p>
-
-        <div class="countdown-grid">
-          <div class="flip-card">
-            <div class="flip-number-wrap">
-              <div class="flip-number" id="days">00</div>
-            </div>
-            <div class="flip-label">Hari</div>
-          </div>
-
-          <div class="flip-card">
-            <div class="flip-number-wrap">
-              <div class="flip-number" id="hours">00</div>
-            </div>
-            <div class="flip-label">Jam</div>
-          </div>
-
-          <div class="flip-card">
-            <div class="flip-number-wrap">
-              <div class="flip-number" id="minutes">00</div>
-            </div>
-            <div class="flip-label">Menit</div>
-          </div>
-
-          <div class="flip-card">
-            <div class="flip-number-wrap">
-              <div class="flip-number" id="seconds">00</div>
-            </div>
-            <div class="flip-label">Detik</div>
-          </div>
+        <div class="time-card">
+          <div class="flip-number" id="minutes">00</div>
+          <div class="label">Menit</div>
         </div>
-
-        <p class="cta-text">
-          <strong>Siapkan diri anda untuk naik panggung kesuksesan..</strong>
-        </p>
-      </section>
-
-      <aside class="hero-right">
-        <div class="panel">
-          <div class="panel-inner">
-            <div class="panel-top">
-              <span>Celebration Panel</span>
-              <div class="panel-light"></div>
-            </div>
-
-            <div class="panel-card">
-              <small>Status Countdown</small>
-              <h3 id="statusText">Persiapan menuju hari istimewa</h3>
-              <div class="status-badge">
-                <span class="mini-dot"></span>
-                <span>Live countdown aktif</span>
-              </div>
-            </div>
-
-            <div class="panel-card">
-              <small>Highlight Event</small>
-              <h3 class="gold-text">Grand Launching & Celebration</h3>
-              <p>
-                Sebuah momentum besar yang dirancang untuk menghadirkan semangat,
-                pencapaian, dan atmosfer kemenangan dalam satu panggung istimewa.
-              </p>
-            </div>
-
-            <div class="panel-card">
-              <small>Lokasi & Waktu</small>
-              <p>
-                Sportorium UMY<br>
-                27 Juni 2026<br>
-                Bersama keluarga besar KINGSA dalam satu perayaan besar.
-              </p>
-            </div>
-          </div>
+        <div class="time-card">
+          <div class="flip-number" id="seconds">00</div>
+          <div class="label">Detik</div>
         </div>
-      </aside>
-    </main>
+      </div>
 
-    <footer>
-      © 2026 PT. BERSAMA KINGSA SEJAHTERA • Grand Event Countdown
-    </footer>
+      <p class="cta">
+        Siapkan diri anda untuk naik panggung kesuksesan..
+      </p>
+    </section>
   </div>
 
   <script>
@@ -753,7 +483,6 @@
     const hoursEl = document.getElementById('hours');
     const minutesEl = document.getElementById('minutes');
     const secondsEl = document.getElementById('seconds');
-    const statusText = document.getElementById('statusText');
 
     function pad(num) {
       return String(num).padStart(2, '0');
@@ -777,7 +506,6 @@
         flipUpdate(hoursEl, '00');
         flipUpdate(minutesEl, '00');
         flipUpdate(secondsEl, '00');
-        statusText.textContent = 'Acara telah dimulai';
         return;
       }
 
@@ -790,49 +518,37 @@
       flipUpdate(hoursEl, pad(hours));
       flipUpdate(minutesEl, pad(minutes));
       flipUpdate(secondsEl, pad(seconds));
-
-      if (days > 30) {
-        statusText.textContent = 'Persiapan menuju hari istimewa';
-      } else if (days > 7) {
-        statusText.textContent = 'Momentum semakin dekat';
-      } else if (days > 0) {
-        statusText.textContent = 'Hitung mundur pekan terakhir';
-      } else {
-        statusText.textContent = 'Hari istimewa sudah di depan mata';
-      }
     }
 
     function createParticles() {
-      const particlesContainer = document.getElementById('particles');
-      const isMobile = window.innerWidth <= 768;
-      const totalParticles = isMobile ? 18 : 32;
+      const container = document.getElementById('particles');
+      const total = window.innerWidth <= 768 ? 16 : 28;
 
-      particlesContainer.innerHTML = '';
+      container.innerHTML = '';
 
-      for (let i = 0; i < totalParticles; i++) {
-        const particle = document.createElement('span');
-        particle.className = 'particle';
+      for (let i = 0; i < total; i++) {
+        const p = document.createElement('span');
+        p.className = 'particle';
 
         const size = Math.random() * 4 + 2;
         const left = Math.random() * 100;
         const duration = Math.random() * 8 + 8;
         const delay = Math.random() * 10;
-        const opacity = Math.random() * 0.5 + 0.2;
+        const opacity = Math.random() * 0.45 + 0.2;
 
-        particle.style.left = left + '%';
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        particle.style.animationDuration = duration + 's';
-        particle.style.animationDelay = delay + 's';
-        particle.style.opacity = opacity;
+        p.style.left = left + '%';
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.animationDuration = duration + 's';
+        p.style.animationDelay = delay + 's';
+        p.style.opacity = opacity;
 
-        particlesContainer.appendChild(particle);
+        container.appendChild(p);
       }
     }
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-
     createParticles();
     window.addEventListener('resize', createParticles);
   </script>
